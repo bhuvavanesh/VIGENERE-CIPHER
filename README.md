@@ -1,37 +1,4 @@
-Skip to content
-Navigation Menu
-02Mani
-VIGENERE-CIPHER
-
-Type / to search
-Code
-Pull requests
-Actions
-Projects
-Security
-Insights
-Owner avatar
-VIGENERE-CIPHER
-Public
-forked from Hemamanigandan/VIGENERE-CIPHER
-02Mani/VIGENERE-CIPHER
-Go to file
-t
-This branch is 1 commit ahead of Hemamanigandan/VIGENERE-CIPHER:main.
-Name		
-02Mani
-02Mani
-Update README.md
-1485fcc
- · 
-last week
-README.md
-Update README.md
-last week
-Repository files navigation
-README
-VIGENERE-CIPHER
-EX. NO: 4
+EX. NO: 1(D)
 IMPLEMETATION OF VIGENERE CIPHER
 AIM:
 To implement the Vigenere Cipher substitution technique using C program.
@@ -45,25 +12,61 @@ ALGORITHM:
 STEP-1: Arrange the alphabets in row and column of a 26*26 matrix. STEP-2: Circulate the alphabets in each row to position left such that the first letter is attached to last. STEP-3: Repeat this process for all 26 rows and construct the final key matrix. STEP-4: The keyword and the plain text is read from the user. STEP-5: The characters in the keyword are repeated sequentially so as to match with that of the plain text. STEP-6: Pick the first letter of the plain text and that of the keyword as the row indices and column indices respectively. STEP-7: The junction character where these two meet forms the cipher character. STEP-8: Repeat the above steps to generate the entire cipher text.
 
 PROGRAM
-def vigenere_cipher(text, key, decrypt=False):
-    result = []
-    key_len = len(key)
-    for i, char in enumerate(text):
-        shift = ord(key[i % key_len]) - ord('A')
-        if decrypt:
-            shift = 26 - shift
-        new_char = chr((ord(char) - ord('A') + shift) % 26 + ord('A'))
-        result.append(new_char)
-    return "".join(result)
-text = input("Enter text (UPPERCASE only): ")
-key = input("Enter key (UPPERCASE only): ")
-encrypted = vigenere_cipher(text, key, decrypt=False)
-print("Encrypted Message:", encrypted)
-decrypted = vigenere_cipher(encrypted, key, decrypt=True)
-print("Decrypted Message:", decrypted)
+PROGRAM:
+#include <stdio.h>
+#include <string.h>
+// Function to perform Vigenere encryption
+void vigenereEncrypt(char *text, const char *key) {
+    int textLen = strlen(text);
+    int keyLen = strlen(key);
+    for (int i = 0; i < textLen; i++) {
+        char c = text[i];
+        if (c >= 'A' && c <= 'Z') {
+            // Encrypt uppercase letters
+            text[i] = ((c - 'A' + key[i % keyLen] - 'A') % 26) + 'A';
+        } else if (c >= 'a' && c <= 'z') {
+            // Encrypt lowercase letters
+            text[i] = ((c - 'a' + key[i % keyLen] - 'A') % 26) + 'a';
+        }
+    }
+}
+// Function to perform Vigenere decryption
+void vigenereDecrypt(char *text, const char *key) {
+    int textLen = strlen(text);
+    int keyLen = strlen(key);
+    for (int i = 0; i < textLen; i++) {
+        char c = text[i];
+
+        if (c >= 'A' && c <= 'Z') {
+            // Decrypt uppercase letters
+            text[i] = ((c - 'A' - (key[i % keyLen] - 'A') + 26) % 26) + 'A';
+        } else if (c >= 'a' && c <= 'z') {
+            // Decrypt lowercase letters
+            text[i] = ((c - 'a' - (key[i % keyLen] - 'A') + 26) % 26) + 'a';
+        }
+    }
+}
+int main() {
+    const char *key = "VAR"; 
+    char message[] = "saveethaengineeringcollege";
+    printf("Simulating Vigenere Cipher:\n");
+    // Print the original plain text
+    printf("Original Message: %s\n", message);
+    // Print the key used
+    printf("Key: %s\n", key);
+    // Encrypt the message
+    vigenereEncrypt(message, key);
+    printf("Encrypted Message: %s\n", message);
+    // Decrypt the message back to the original
+    vigenereDecrypt(message, key);
+    printf("Decrypted Message: %s\n", message);
+    return 0;
+}
 OUTPUT
-Screenshot (4) ## RESULT
-Thus the program executed successfully
+image
+
+RESULT
+The program is executed successfully
 
 About
 No description, website, or topics provided.
@@ -75,7 +78,7 @@ Stars
 Watchers
  0 watching
 Forks
- 0 forks
+ 3 forks
 Report repository
 Releases
 No releases published
@@ -93,3 +96,4 @@ Docs
 Contact
 Manage cookies
 Do not share my personal information
+Editing VIGENERE-CIPHER/README.md at main · bhuvavanesh/VIGENERE-CIPHER
